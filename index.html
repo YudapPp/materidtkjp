@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar DTKJP - UKT 1 Semester Genap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f72585;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7ff;
+            background-image: radial-gradient(#4cc9f0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: 180px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 2rem 0 4rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+        
+        /* Mind Map Section */
+        .mind-map-section {
+            margin-bottom: 4rem;
+        }
+        
+        .mind-map-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        
+        .mind-map {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .mind-map-visual {
+            position: relative;
+            height: 400px;
+            margin-bottom: 2rem;
+        }
+        
+        .central-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            z-index: 2;
+        }
+        
+        .node {
+            position: absolute;
+            background: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hardware { border-left: 5px solid #4361ee; }
+        .software { border-left: 5px solid #4cc9f0; }
+        .brainware { border-left: 5px solid #f72585; }
+        
+        .connection {
+            position: absolute;
+            background-color: var(--gray);
+            height: 3px;
+            transform-origin: 0 0;
+            z-index: 0;
+        }
+        
+        .node-details {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .node-info {
+            display: none;
+        }
+        
+        .node-info.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* CMD Section */
+        .cmd-section {
+            margin-bottom: 4rem;
+        }
+        
+        .cmd-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .cmd-list {
+            flex: 1;
+            min-width: 300px;
+            background: var(--dark);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .cmd-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .cmd-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cmd-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cmd-command {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .cmd-desc {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .cmd-simulator {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .cmd-terminal {
+            background: var(--dark);
+            color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            height: 300px;
+            overflow-y: auto;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .cmd-output {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .cmd-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cmd-prompt {
+            color: var(--accent);
+        }
+        
+        .cmd-input-field {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        /* LKPD Section */
+        .lkpd-section {
+            margin-bottom: 4rem;
+        }
+        
+        .lkpd-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .pc-components {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .component-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .component-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .component-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .quiz-container {
+            margin-top: 1.5rem;
+        }
+        
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-option {
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-option:hover {
+            background: #e2e6ff;
+        }
+        
+        .quiz-option.selected {
+            background: #d1e7ff;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .quiz-option.correct {
+            background: #d4edda;
+            border-left: 5px solid var(--success);
+        }
+        
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-left: 5px solid var(--danger);
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .quiz-score {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .mind-map-visual {
+                height: 300px;
+            }
+            
+            .component-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                <span>DTKJP Learning</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#mind-map">Mind Map</a></li>
+                    <li><a href="#cmd">Command Prompt</a></li>
+                    <li><a href="#lkpd">Komponen PC</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Kisi-Kisi UKT 1 DTKJP Semester Genap</h1>
+            <p>Website pembelajaran interaktif untuk membantu memahami materi Komponen Komputer, Perintah CMD, dan LKPD Komponen PC dengan cara yang menyenangkan dan lengkap.</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-sitemap"></i>
+                    <h3>Mind Mapping</h3>
+                    <p>Kaitan Komponen Komputer</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-terminal"></i>
+                    <h3>Command Prompt</h3>
+                    <p>Perintah Dasar CMD</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Komponen PC</h3>
+                    <p>LKPD Personal Komputer</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Quiz Interaktif</h3>
+                    <p>Uji Pengetahuan Anda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Mind Map Section -->
+        <section id="mind-map" class="mind-map-section">
+            <h2 class="section-title">1. Mind Mapping Komponen Komputer</h2>
+            <div class="mind-map-container">
+                <div class="mind-map">
+                    <div class="mind-map-visual" id="mindMapVisual">
+                        <!-- Nodes and connections will be created by JavaScript -->
+                    </div>
+                    <div class="mind-map-info">
+                        <p><strong>Mind Mapping</strong> adalah teknik visual untuk menata informasi secara hierarkis, menunjukkan hubungan antara bagian-bagian dari suatu keseluruhan.</p>
+                        <p>Klik pada setiap node untuk melihat penjelasan detail tentang komponen komputer tersebut.</p>
+                    </div>
+                </div>
+                
+                <div class="node-details">
+                    <h3>Detail Komponen</h3>
+                    <div id="nodeDetails">
+                        <div class="node-info active" id="defaultInfo">
+                            <p>Pilih salah satu komponen di mind map untuk melihat penjelasan detailnya.</p>
+                            <p>Komputer terdiri dari tiga komponen utama: <strong>Hardware</strong> (perangkat keras), <strong>Software</strong> (perangkat lunak), dan <strong>Brainware</strong> (pengguna).</p>
+                        </div>
+                        
+                        <div class="node-info" id="hardwareInfo">
+                            <h4>Hardware (Perangkat Keras)</h4>
+                            <p>Hardware adalah komponen fisik komputer yang dapat dilihat dan disentuh.</p>
+                            <ul>
+                                <li><strong>Input Device:</strong> Perangkat masukan (keyboard, mouse, scanner)</li>
+                                <li><strong>Processing Device:</strong> Perangkat pemrosesan (CPU, motherboard)</li>
+                                <li><strong>Output Device:</strong> Perangkat keluaran (monitor, printer, speaker)</li>
+                                <li><strong>Storage Device:</strong> Perangkat penyimpanan (harddisk, SSD, flashdisk)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="node-info" id="softwareInfo">
+                            <h4>Software (Perangkat Lunak)</h4>
+                            <p>Software adalah program yang berisi instruksi untuk menjalankan tugas tertentu pada komputer.</p>
+                            <ul>
+                                <li><strong>Sistem Operasi:</strong> Windows, Linux, macOS, Android</li>
+                                <li><strong>Aplikasi:</strong> Microsoft Office, Photoshop, Browser</li>
+                                <li><strong>Utility:</strong> Antivirus, Disk Cleanup, Backup Tools</li>
+                                <li><strong>Bahasa Pemrograman:</strong> Python, Java, C++, JavaScript</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="node-info" id="brainwareInfo">
+                            <h4>Brainware (Pengguna)</h4>
+                            <p>Brainware adalah orang yang menggunakan atau mengoperasikan komputer.</p>
+                            <ul>
+                                <li><strong>Operator:</strong> Menjalankan sistem komputer</li>
+                                <li><strong>Programmer:</strong> Membuat program/aplikasi</li>
+                                <li><strong>System Analyst:</strong> Menganalisis sistem yang dibutuhkan</li>
+                                <li><strong>Network Administrator:</strong> Mengelola jaringan komputer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CMD Section -->
+        <section id="cmd" class="cmd-section">
+            <h2 class="section-title">2. Perintah Dasar Command Prompt (CMD)</h2>
+            <div class="cmd-container">
+                <div class="cmd-list">
+                    <div class="cmd-header">
+                        <h3>Daftar Perintah CMD</h3>
+                        <i class="fas fa-code"></i>
+                    </div>
+                    
+                    <div id="cmdCommandsList">
+                        <!-- Command list will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="cmd-simulator">
+                    <h3>Simulator Command Prompt</h3>
+                    <p>Coba ketik perintah CMD di bawah ini (contoh: dir, ipconfig, ping google.com)</p>
+                    
+                    <div class="cmd-terminal" id="cmdTerminal">
+                        <div class="cmd-output">Microsoft Windows [Version 10.0.19045.3324]</div>
+                        <div class="cmd-output">(c) Microsoft Corporation. All rights reserved.</div>
+                        <div class="cmd-output">Ketik "help" untuk melihat daftar perintah yang tersedia.</div>
+                        <div class="cmd-output" id="cmdOutput"></div>
+                    </div>
+                    
+                    <div class="cmd-input">
+                        <span class="cmd-prompt">C:\Users\DTKJP></span>
+                        <input type="text" class="cmd-input-field" id="cmdInput" placeholder="Ketik perintah CMD di sini...">
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn" id="clearCmdBtn"><i class="fas fa-broom"></i> Bersihkan Terminal</button>
+                        <button class="btn btn-outline" id="helpCmdBtn"><i class="fas fa-question-circle"></i> Tampilkan Bantuan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- LKPD Section -->
+        <section id="lkpd" class="lkpd-section">
+            <h2 class="section-title">3. LKPD Komponen PC (Personal Komputer)</h2>
+            <div class="lkpd-container">
+                <div class="pc-components">
+                    <h3>Komponen-Komponen PC</h3>
+                    <p>Berikut adalah komponen utama dalam sebuah Personal Computer (PC):</p>
+                    
+                    <div class="component-list" id="componentList">
+                        <!-- Components will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="quiz-section">
+                    <h3>Quiz Komponen PC</h3>
+                    <p>Uji pemahaman Anda tentang komponen komputer dengan quiz berikut:</p>
+                    
+                    <div class="quiz-container">
+                        <div class="quiz-question" id="quizQuestion">
+                            <!-- Question will be populated by JavaScript -->
+                        </div>
+                        
+                        <div class="quiz-options" id="quizOptions">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+                        
+                        <div class="quiz-navigation">
+                            <div class="quiz-score">Skor: <span id="quizScore">0</span></div>
+                            <div>
+                                <button class="btn btn-outline" id="prevQuestionBtn"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                                <button class="btn" id="nextQuestionBtn">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                                <button class="btn" id="checkAnswerBtn" style="display: none;">Cek Jawaban</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DTKJP Learning</h3>
+                    <p>Website pembelajaran interaktif untuk mata pelajaran DTKJP. Semua materi disajikan dengan cara yang menyenangkan dan mudah dipahami.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Materi Pembelajaran</h3>
+                    <ul class="footer-links">
+                        <li><a href="#mind-map">Mind Mapping Komponen Komputer</a></li>
+                        <li><a href="#cmd">Perintah Dasar CMD</a></li>
+                        <li><a href="#lkpd">LKPD Komponen PC</a></li>
+                        <li><a href="#quiz">Quiz Interaktif</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tips Belajar</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Cara Efektif Menghafal Perintah CMD</a></li>
+                        <li><a href="#">Memahami Komponen Komputer dengan Mudah</a></li>
+                        <li><a href="#">Strategi Mengerjakan Soal UKT</a></li>
+                        <li><a href="#">Sumber Belajar Tambahan</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 DTKJP Learning - UKT 1 Semester Genap. Dibuat untuk tujuan pembelajaran.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Data untuk mind map
+        const mindMapData = [
+            { id: "central", name: "KOMPUTER", x: 50, y: 50, type: "central" },
+            { id: "hardware", name: "HARDWARE", x: 20, y: 25, type: "hardware" },
+            { id: "software", name: "SOFTWARE", x: 50, y: 15, type: "software" },
+            { id: "brainware", name: "BRAINWARE", x: 80, y: 25, type: "brainware" }
+        ];
+        
+        // Data untuk perintah CMD
+        const cmdCommands = [
+            { command: "dir", description: "Menampilkan daftar file dan folder dalam direktori saat ini" },
+            { command: "cd", description: "Mengubah direktori kerja (Change Directory)" },
+            { command: "cls", description: "Membersihkan layar command prompt (Clear Screen)" },
+            { command: "copy", description: "Menyalin file dari satu lokasi ke lokasi lain" },
+            { command: "del", description: "Menghapus satu atau lebih file" },
+            { command: "mkdir", description: "Membuat direktori baru (Make Directory)" },
+            { command: "rmdir", description: "Menghapus direktori (Remove Directory)" },
+            { command: "ipconfig", description: "Menampilkan konfigurasi jaringan TCP/IP" },
+            { command: "ping", description: "Menguji konektivitas jaringan ke host tertentu" },
+            { command: "tracert", description: "Melacak rute yang dilalui paket ke host tujuan" },
+            { command: "systeminfo", description: "Menampilkan informasi konfigurasi sistem" },
+            { command: "help", description: "Menampilkan daftar perintah yang tersedia" },
+            { command: "exit", description: "Keluar dari command prompt" },
+            { command: "shutdown", description: "Mematikan, restart, atau hibernasi komputer" },
+            { command: "tasklist", description: "Menampilkan daftar proses yang sedang berjalan" },
+            { command: "chkdsk", description: "Memeriksa disk dan menampilkan laporan status" },
+            { command: "format", description: "Memformat disk untuk digunakan dengan Windows" },
+            { command: "type", description: "Menampilkan isi file teks" },
+            { command: "rename", description: "Mengubah nama file" },
+            { command: "move", description: "Memindahkan file dari satu direktori ke direktori lain" }
+        ];
+        
+        // Data untuk komponen PC
+        const pcComponents = [
+            { name: "Motherboard", icon: "fas fa-microchip", description: "Papan sirkuit utama yang menghubungkan semua komponen komputer" },
+            { name: "Processor (CPU)", icon: "fas fa-brain", description: "Unit pemrosesan pusat, otak komputer yang menjalankan instruksi" },
+            { name: "RAM", icon: "fas fa-memory", description: "Memori akses acak untuk penyimpanan data sementara" },
+            { name: "Hard Disk (HDD)", icon: "fas fa-hdd", description: "Penyimpanan permanen untuk sistem operasi, program, dan data" },
+            { name: "SSD", icon: "fas fa-compact-disc", description: "Solid State Drive, penyimpanan yang lebih cepat dari HDD" },
+            { name: "Power Supply", icon: "fas fa-plug", description: "Menyediakan daya listrik untuk semua komponen komputer" },
+            { name: "VGA Card", icon: "fas fa-tv", description: "Kartu grafis untuk menampilkan gambar ke monitor" },
+            { name: "Optical Drive", icon: "fas fa-compact-disc", description: "Drive untuk membaca CD/DVD/Blu-ray" },
+            { name: "Cooling Fan", icon: "fas fa-fan", description: "Kipas untuk mendinginkan komponen komputer" },
+            { name: "Casing", icon: "fas fa-box", description: "Rumah fisik yang melindungi komponen komputer" }
+        ];
+        
+        // Data untuk quiz
+        const quizQuestions = [
+            {
+                question: "Manakah dari berikut ini yang termasuk perangkat input?",
+                options: ["Monitor", "Printer", "Keyboard", "Speaker"],
+                correct: 2
+            },
+            {
+                question: "Perintah CMD untuk melihat daftar file dan folder adalah?",
+                options: ["ls", "dir", "list", "show"],
+                correct: 1
+            },
+            {
+                question: "Komponen komputer yang berfungsi sebagai otak komputer adalah?",
+                options: ["RAM", "Motherboard", "Processor (CPU)", "Hard Disk"],
+                correct: 2
+            },
+            {
+                question: "Perintah CMD untuk membersihkan layar adalah?",
+                options: ["clear", "clean", "cls", "clr"],
+                correct: 2
+            },
+            {
+                question: "Yang termasuk dalam brainware adalah?",
+                options: ["Monitor", "Programmer", "Windows OS", "Motherboard"],
+                correct: 1
+            }
+        ];
+        
+        // Variabel global
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        let selectedOption = null;
+        
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            initMindMap();
+            initCmdCommands();
+            initPcComponents();
+            initQuiz();
+            initCmdSimulator();
+            
+            // Smooth scroll untuk navigasi
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+        
+        // Fungsi untuk menginisialisasi mind map
+        function initMindMap() {
+            const mindMapVisual = document.getElementById('mindMapVisual');
+            
+            // Buat node dan koneksi
+            mindMapData.forEach(node => {
+                // Hitung posisi absolut berdasarkan persentase
+                const x = (node.x / 100) * mindMapVisual.clientWidth;
+                const y = (node.y / 100) * mindMapVisual.clientHeight;
+                
+                // Buat elemen node
+                const nodeElement = document.createElement('div');
+                nodeElement.className = `node ${node.type}`;
+                nodeElement.id = `node-${node.id}`;
+                nodeElement.textContent = node.name;
+                nodeElement.style.left = `${x}px`;
+                nodeElement.style.top = `${y}px`;
+                
+                // Tambahkan event listener untuk menampilkan detail
+                if (node.type !== 'central') {
+                    nodeElement.addEventListener('click', function() {
+                        showNodeInfo(node.type);
+                    });
+                }
+                
+                mindMapVisual.appendChild(nodeElement);
+                
+                // Buat koneksi dari node pusat ke node lainnya
+                if (node.type !== 'central') {
+                    const centralX = (50 / 100) * mindMapVisual.clientWidth;
+                    const centralY = (50 / 100) * mindMapVisual.clientHeight;
+                    
+                    const connection = document.createElement('div');
+                    connection.className = 'connection';
+                    
+                    // Hitung panjang dan sudut koneksi
+                    const dx = x - centralX;
+                    const dy = y - centralY;
+                    const length = Math.sqrt(dx * dx + dy * dy);
+                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    
+                    connection.style.width = `${length}px`;
+                    connection.style.left = `${centralX}px`;
+                    connection.style.top = `${centralY}px`;
+                    connection.style.transform = `rotate(${angle}deg)`;
+                    
+                    mindMapVisual.appendChild(connection);
+                }
+            });
+        }
+        
+        // Fungsi untuk menampilkan informasi node
+        function showNodeInfo(nodeType) {
+            // Sembunyikan semua info node
+            document.querySelectorAll('.node-info').forEach(info => {
+                info.classList.remove('active');
+            });
+            
+            // Tampilkan info node yang dipilih
+            const targetInfo = document.getElementById(`${nodeType}Info`);
+            if (targetInfo) {
+                targetInfo.classList.add('active');
+            }
+            
+            // Highlight node yang dipilih
+            document.querySelectorAll('.node').forEach(node => {
+                node.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.1)';
+            });
+            
+            const selectedNode = document.getElementById(`node-${nodeType}`);
+            if (selectedNode) {
+                selectedNode.style.boxShadow = '0 0 0 3px rgba(76, 201, 240, 0.5)';
+            }
+        }
+        
+        // Fungsi untuk menginisialisasi daftar perintah CMD
+        function initCmdCommands() {
+            const cmdCommandsList = document.getElementById('cmdCommandsList');
+            
+            cmdCommands.forEach(cmd => {
+                const cmdItem = document.createElement('div');
+                cmdItem.className = 'cmd-item';
+                
+                cmdItem.innerHTML = `
+                    <div class="cmd-command">${cmd.command}</div>
+                    <div class="cmd-desc">${cmd.description}</div>
+                `;
+                
+                cmdCommandsList.appendChild(cmdItem);
+            });
+        }
+        
+        // Fungsi untuk menginisialisasi komponen PC
+        function initPcComponents() {
+            const componentList = document.getElementById('componentList');
+            
+            pcComponents.forEach(component => {
+                const componentCard = document.createElement('div');
+                componentCard.className = 'component-card';
+                
+                componentCard.innerHTML = `
+                    <div class="component-icon">
+                        <i class="${component.icon}"></i>
+                    </div>
+                    <h4>${component.name}</h4>
+                    <p>${component.description}</p>
+                `;
+                
+                componentList.appendChild(componentCard);
+            });
+        }
+        
+        // Fungsi untuk menginisialisasi quiz
+        function initQuiz() {
+            displayQuizQuestion();
+            
+            // Event listener untuk tombol navigasi quiz
+            document.getElementById('prevQuestionBtn').addEventListener('click', function() {
+                if (currentQuizQuestion > 0) {
+                    currentQuizQuestion--;
+                    displayQuizQuestion();
+                }
+            });
+            
+            document.getElementById('nextQuestionBtn').addEventListener('click', function() {
+                if (currentQuizQuestion < quizQuestions.length - 1) {
+                    currentQuizQuestion++;
+                    displayQuizQuestion();
+                } else {
+                    // Jika sudah di soal terakhir, tampilkan hasil
+                    showQuizResults();
+                }
+            });
+            
+            document.getElementById('checkAnswerBtn').addEventListener('click', function() {
+                checkAnswer();
+            });
+        }
+        
+        // Fungsi untuk menampilkan pertanyaan quiz
+        function displayQuizQuestion() {
+            const question = quizQuestions[currentQuizQuestion];
+            const quizQuestionElement = document.getElementById('quizQuestion');
+            const quizOptionsElement = document.getElementById('quizOptions');
+            const prevBtn = document.getElementById('prevQuestionBtn');
+            const nextBtn = document.getElementById('nextQuestionBtn');
+            const checkBtn = document.getElementById('checkAnswerBtn');
+            
+            // Update pertanyaan
+            quizQuestionElement.textContent = `Pertanyaan ${currentQuizQuestion + 1}: ${question.question}`;
+            
+            // Update opsi jawaban
+            quizOptionsElement.innerHTML = '';
+            selectedOption = null;
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'quiz-option';
+                optionElement.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+                optionElement.dataset.index = index;
+                
+                optionElement.addEventListener('click', function() {
+                    // Hapus seleksi dari semua opsi
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Tandai opsi yang dipilih
+                    this.classList.add('selected');
+                    selectedOption = parseInt(this.dataset.index);
+                    
+                    // Tampilkan tombol cek jawaban
+                    checkBtn.style.display = 'inline-block';
+                });
+                
+                quizOptionsElement.appendChild(optionElement);
+            });
+            
+            // Update status tombol navigasi
+            prevBtn.disabled = currentQuizQuestion === 0;
+            prevBtn.style.opacity = prevBtn.disabled ? '0.5' : '1';
+            
+            nextBtn.textContent = currentQuizQuestion === quizQuestions.length - 1 ? 'Lihat Hasil' : 'Selanjutnya >';
+            
+            // Sembunyikan tombol cek jawaban
+            checkBtn.style.display = 'none';
+            
+            // Update skor
+            document.getElementById('quizScore').textContent = quizScore;
+        }
+        
+        // Fungsi untuk memeriksa jawaban
+        function checkAnswer() {
+            if (selectedOption === null) return;
+            
+            const question = quizQuestions[currentQuizQuestion];
+            const options = document.querySelectorAll('.quiz-option');
+            
+            // Tandai jawaban yang benar dan salah
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedOption && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Update skor jika benar
+            if (selectedOption === question.correct) {
+                quizScore++;
+                document.getElementById('quizScore').textContent = quizScore;
+            }
+            
+            // Sembunyikan tombol cek jawaban
+            document.getElementById('checkAnswerBtn').style.display = 'none';
+        }
+        
+        // Fungsi untuk menampilkan hasil quiz
+        function showQuizResults() {
+            const quizQuestionElement = document.getElementById('quizQuestion');
+            const quizOptionsElement = document.getElementById('quizOptions');
+            const prevBtn = document.getElementById('prevQuestionBtn');
+            const nextBtn = document.getElementById('nextQuestionBtn');
+            const checkBtn = document.getElementById('checkAnswerBtn');
+            
+            quizQuestionElement.textContent = `Hasil Quiz: ${quizScore} dari ${quizQuestions.length} benar`;
+            quizOptionsElement.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <h3>Skor Anda: ${quizScore}/${quizQuestions.length}</h3>
+                    <p>${quizScore >= 4 ? 'Sangat baik! Anda menguasai materi dengan baik.' : 
+                        quizScore >= 3 ? 'Cukup baik, tapi masih perlu belajar lagi.' : 
+                        'Perlu belajar lebih giat lagi. Coba ulangi materi.'}</p>
+                    <button class="btn" id="restartQuizBtn" style="margin-top: 1rem;">
+                        <i class="fas fa-redo"></i> Ulangi Quiz
+                    </button>
+                </div>
+            `;
+            
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            checkBtn.style.display = 'none';
+            
+            // Event listener untuk tombol ulang quiz
+            document.getElementById('restartQuizBtn').addEventListener('click', function() {
+                currentQuizQuestion = 0;
+                quizScore = 0;
+                prevBtn.style.display = 'inline-block';
+                nextBtn.style.display = 'inline-block';
+                displayQuizQuestion();
+            });
+        }
+        
+        // Fungsi untuk menginisialisasi simulator CMD
+        function initCmdSimulator() {
+            const cmdInput = document.getElementById('cmdInput');
+            const cmdOutput = document.getElementById('cmdOutput');
+            const clearCmdBtn = document.getElementById('clearCmdBtn');
+            const helpCmdBtn = document.getElementById('helpCmdBtn');
+            
+            // Event listener untuk input CMD
+            cmdInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const command = this.value.trim().toLowerCase();
+                    this.value = '';
+                    
+                    if (command === '') return;
+                    
+                    // Proses perintah
+                    processCmdCommand(command, cmdOutput);
+                    
+                    // Scroll ke bawah terminal
+                    const terminal = document.getElementById('cmdTerminal');
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+            });
+            
+            // Event listener untuk tombol clear
+            clearCmdBtn.addEventListener('click', function() {
+                cmdOutput.innerHTML = '';
+            });
+            
+            // Event listener untuk tombol help
+            helpCmdBtn.addEventListener('click', function() {
+                const helpOutput = cmdCommands.map(cmd => 
+                    `<div class="cmd-output"><span style="color: #4cc9f0">${cmd.command}</span> - ${cmd.description}</div>`
+                ).join('');
+                
+                cmdOutput.innerHTML += `<div class="cmd-output" style="color: #4cc9f0; margin-top: 10px;">=== Daftar Perintah CMD ===</div>${helpOutput}`;
+                
+                // Scroll ke bawah terminal
+                const terminal = document.getElementById('cmdTerminal');
+                terminal.scrollTop = terminal.scrollHeight;
+            });
+        }
+        
+        // Fungsi untuk memproses perintah CMD
+        function processCmdCommand(command, outputElement) {
+            let output = '';
+            
+            // Tampilkan perintah yang dimasukkan
+            outputElement.innerHTML += `<div class="cmd-output"><span style="color: #4cc9f0">C:\\Users\\DTKJP></span> ${command}</div>`;
+            
+            // Proses perintah
+            if (command === 'help') {
+                output = cmdCommands.map(cmd => 
+                    `<div class="cmd-output" style="margin-left: 20px;"><span style="color: #4cc9f0">${cmd.command}</span> - ${cmd.description}</div>`
+                ).join('');
+                
+                outputElement.innerHTML += `<div class="cmd-output">=== Daftar Perintah CMD ===</div>${output}`;
+            } 
+            else if (command === 'dir') {
+                output = `<div class="cmd-output"> Volume in drive C is OS</div>
+                          <div class="cmd-output"> Volume Serial Number is 1234-ABCD</div>
+                          <div class="cmd-output"></div>
+                          <div class="cmd-output"> Directory of C:\\Users\\DTKJP</div>
+                          <div class="cmd-output"></div>
+                          <div class="cmd-output">05/10/2023  08:15 AM    &lt;DIR&gt;          .</div>
+                          <div class="cmd-output">05/10/2023  08:15 AM    &lt;DIR&gt;          ..</div>
+                          <div class="cmd-output">05/09/2023  02:30 PM            15,360 document.txt</div>
+                          <div class="cmd-output">05/08/2023  11:20 AM    &lt;DIR&gt;          Downloads</div>
+                          <div class="cmd-output">05/07/2023  04:45 PM    &lt;DIR&gt;          Desktop</div>
+                          <div class="cmd-output">               1 File(s)         15,360 bytes</div>
+                          <div class="cmd-output">               3 Dir(s)   250,345,987,072 bytes free</div>`;
+            }
+            else if (command === 'cls') {
+                outputElement.innerHTML = '';
+                return;
+            }
+            else if (command === 'ipconfig') {
+                output = `<div class="cmd-output">Windows IP Configuration</div>
+                          <div class="cmd-output"></div>
+                          <div class="cmd-output">Ethernet adapter Ethernet:</div>
+                          <div class="cmd-output">   Connection-specific DNS Suffix  . : example.com</div>
+                          <div class="cmd-output">   IPv4 Address. . . . . . . . . . . : 192.168.1.100</div>
+                          <div class="cmd-output">   Subnet Mask . . . . . . . . . . . : 255.255.255.0</div>
+                          <div class="cmd-output">   Default Gateway . . . . . . . . . : 192.168.1.1</div>`;
+            }
+            else if (command.startsWith('ping')) {
+                const host = command.split(' ')[1] || 'google.com';
+                output = `<div class="cmd-output">Pinging ${host} [142.250.185.14] with 32 bytes of data:</div>
+                          <div class="cmd-output">Reply from 142.250.185.14: bytes=32 time=15ms TTL=117</div>
+                          <div class="cmd-output">Reply from 142.250.185.14: bytes=32 time=16ms TTL=117</div>
+                          <div class="cmd-output">Reply from 142.250.185.14: bytes=32 time=14ms TTL=117</div>
+                          <div class="cmd-output">Reply from 142.250.185.14: bytes=32 time=17ms TTL=117</div>
+                          <div class="cmd-output"></div>
+                          <div class="cmd-output">Ping statistics for 142.250.185.14:</div>
+                          <div class="cmd-output">    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),</div>
+                          <div class="cmd-output">Approximate round trip times in milli-seconds:</div>
+                          <div class="cmd-output">    Minimum = 14ms, Maximum = 17ms, Average = 15ms</div>`;
+            }
+            else if (command === 'systeminfo') {
+                output = `<div class="cmd-output">Host Name:                 DTKJP-PC</div>
+                          <div class="cmd-output">OS Name:                   Microsoft Windows 10 Pro</div>
+                          <div class="cmd-output">OS Version:                10.0.19045 N/A Build 19045</div>
+                          <div class="cmd-output">OS Manufacturer:           Microsoft Corporation</div>
+                          <div class="cmd-output">OS Configuration:          Standalone Workstation</div>
+                          <div class="cmd-output">Registered Owner:          DTKJP Student</div>
+                          <div class="cmd-output">Registered Organization:   DTKJP School</div>
+                          <div class="cmd-output">System Boot Time:          5/10/2023, 7:30:15 AM</div>`;
+            }
+            else if (command === 'exit') {
+                output = `<div class="cmd-output">Untuk keluar dari simulator, tutup atau refresh halaman browser.</div>`;
+            }
+            else {
+                // Cek apakah perintah ada dalam daftar
+                const foundCmd = cmdCommands.find(cmd => cmd.command === command);
+                
+                if (foundCmd) {
+                    output = `<div class="cmd-output">Perintah "${command}" berhasil dijalankan.</div>
+                              <div class="cmd-output">Fungsi: ${foundCmd.description}</div>`;
+                } else {
+                    output = `<div class="cmd-output" style="color: #f72585">'${command}' is not recognized as an internal or external command, operable program or batch file.</div>`;
+                }
+            }
+            
+            outputElement.innerHTML += output;
+        }
+    </script>
+</body>
+</html>
